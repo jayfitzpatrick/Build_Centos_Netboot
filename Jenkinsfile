@@ -3,15 +3,14 @@
 timestamps {
 
 node () {
-
+def dir = extracted
+def dir2 = bootcd
 	stage ('BootISO - Checkout') {
  	 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'a0576608-6290-4b83-ba32-9c9b6665e204', url: 'https://github.com/jayfitzpatrick/Build_Centos_Netboot.git']]])
 	}
 	stage ('BootISO - Build') {
  			// Shell build step
 sh """
-def dir = extracted
-def dir2 = bootcd
 cd /tmp
 sudo yum install mkisofs -y
 if [[ ! -e CentOS-7-x86_64-NetInstall-1804.iso ]]; then
