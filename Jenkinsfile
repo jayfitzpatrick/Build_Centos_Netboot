@@ -1,24 +1,35 @@
-import jenkins.model.*
+// Powered by Infostretch
 
-def pluginParameter="git slack"
-def plugins = pluginParameter.split()
-println(plugins)
-def instance = Jenkins.getInstance()
-def pm = instance.getPluginManager()
-def uc = instance.getUpdateCenter()
-def installed = false
+timestamps {
 
-plugins.each {
-  if (!pm.getPlugin(it)) {
-    def plugin = uc.getPlugin(it)
-    if (plugin) {
-      println("Installing " + it)
-      plugin.deploy()
-      installed = true
-    }
-  }
+node () {
+
+	stage ('Manual Creation of BootISO - Build') {
+ 			// Shell build step
+sh """
+cd /tmp
+sudo yum install mkisofs -y
+if [[ ! -e CentOS-7-x86_64-NetInstall-1804.iso ]]; then
+wget http://ftp.heanet.ie/pub/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-1804.iso
+fi
+
+if [[ ! -e extracted ]]; then
+    mkdir extracted
+elif [[ ! -d extracted ]]; then
+    echo "extracted already exists but is not a directory" 1>&2
+fi
+sudo mount -o loop ./CentOS-7-x86_64-NetInstall-1804.iso ./extracted
+if [[ ! -e bootcd ]]; then
+    mkdir bootcd
+elif [[ ! -d bootcd ]]; then
+    echo "bootcd already exists but is not a directory" 1>&2
+fi
+sudo /usr/bin/cp -r ./extracted/isolinux ./bootcd/
+cd bootcd/
+mkisofs -o kickstart.iso -b isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -R -J -v -T isolinux/
+cd ..
+sudo umount extracted
+ """
+	}
 }
-
-instance.save()
-if (installed)
-instance.doSafeRestart()
+}
