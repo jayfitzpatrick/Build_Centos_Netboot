@@ -1,6 +1,6 @@
 import jenkins.model.*
 jenkins = Jenkins.instance
-timestamps {
+timestamps { 
 
 node () {
 	stage ('BootISO - Checkout') {
