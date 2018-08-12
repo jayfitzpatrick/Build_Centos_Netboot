@@ -27,7 +27,7 @@ elif [[ ! -d bootcd ]]; then
 fi
 sudo /usr/bin/cp -r ./extracted/isolinux ./bootcd/
 cd bootcd/
-wget https://raw.githubusercontent.com/jayfitzpatrick/Build_Centos_Netboot/master/isolinux.cfg -O ./isolinux/isolinux.cfg
+sudo wget https://raw.githubusercontent.com/jayfitzpatrick/Build_Centos_Netboot/master/isolinux.cfg -O ./isolinux/isolinux.cfg
 mkisofs -o kickstart1.iso -b isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -R -J -v -T isolinux/
 cd ..
 sudo umount extracted
