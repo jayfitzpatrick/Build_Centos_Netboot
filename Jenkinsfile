@@ -26,7 +26,7 @@ if [[ ! -e ${dir2} ]]; then
 elif [[ ! -d ${dir2} ]]; then
     echo "${dir2} already exists but is not a directory" 1>&2
 fi
-sudo \cp -r ./extracted/isolinux ./bootcd/
+sudo \\cp -r ./extracted/isolinux ./bootcd/
 cd bootcd/
 mkisofs -o kickstart.iso -b isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -R -J -v -T isolinux/
 cd ..
