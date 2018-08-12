@@ -5,7 +5,7 @@ timestamps {
 node () {
 
 	stage ('Manual Creation of BootISO - Build') {
- 			// Shell build step
+ 		env.someVar='findme'
 sh """
 cd /tmp
 sudo yum install mkisofs -y
@@ -29,6 +29,7 @@ cd bootcd/
 mkisofs -o kickstart1.iso -b isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -R -J -v -T isolinux/
 cd ..
 sudo umount extracted
+logger "${env.someVar}"
  """
 	}
 }
