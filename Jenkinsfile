@@ -26,7 +26,7 @@ elif [[ ! -d bootcd ]]; then
 fi
 sudo /usr/bin/cp -r ./extracted/isolinux ./bootcd/
 cd bootcd/
-mkisofs -o kickstart.iso -b isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -R -J -v -T isolinux/
+mkisofs -o kickstart1.iso -b isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -R -J -v -T isolinux/
 cd ..
 sudo umount extracted
  """
