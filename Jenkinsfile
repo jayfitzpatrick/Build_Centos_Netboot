@@ -18,6 +18,7 @@ if [[ ! -e extracted ]]; then
 elif [[ ! -d extracted ]]; then
     echo "extracted already exists but is not a directory" 1>&2
 fi
+sudo umount extracted
 sudo mount -o loop ./CentOS-7-x86_64-NetInstall-1804.iso ./extracted
 if [[ ! -e bootcd ]]; then
     mkdir bootcd
