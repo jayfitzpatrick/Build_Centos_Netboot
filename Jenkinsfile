@@ -1,7 +1,7 @@
 import jenkins.model.*
 jenkins = Jenkins.instance
-timestamps { 
 
+timestamps {
 node () {
 	stage ('BootISO - Checkout') {
  	 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'a0576608-6290-4b83-ba32-9c9b6665e204', url: 'https://github.com/jayfitzpatrick/Build_Centos_Netboot.git']]])
