@@ -30,7 +30,7 @@ fi
 sudo /usr/bin/cp -r ./extracted/isolinux ./bootcd/
 cd bootcd/
 sudo wget https://raw.githubusercontent.com/jayfitzpatrick/Build_Centos_Netboot/master/isolinux.cfg -O ./isolinux/isolinux.cfg
-mkisofs -o RXP-kickstart.iso -b isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -R -J -v -T isolinux/
+sudo mkisofs -o RXP-kickstart.iso -b isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -R -J -v -T isolinux/
 cd ..
 sudo umount extracted
 logger "${env.myVar}"

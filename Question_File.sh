@@ -1,3 +1,4 @@
+#!/bin/sh
 clear
 cd_major="7.5"
 cd_minor="1804"
@@ -46,9 +47,17 @@ select opt in "${options[@]}" "Quit"; do
     esac
 done
 
+if [[ ! -e ./CentOS-7-x86_64-Minimal-${cd_minor}.iso ]]; then
+wget ${iso_url} -O ./CentOS-7-x86_64-Minimal-${cd_minor}.iso
+fi
+
+
 checksum_dl=`echo ${iso_url}|sed 's/\(.*\)[/].*/\1/'`
 if [ "${iso_checksum_type}" = sha256 ] ; then
 iso_checksum=`curl -s ${checksum_dl}/sha256sum.txt |grep CentOS-7-x86_64-Minimal-${cd_minor}.iso|sed 's/\(.*\)[ ].*/\1/'`
+echo "${iso_checksum} ./CentOS-7-x86_64-Minimal-${cd_minor}.iso" |sha256sum -c -
 else
 iso_checksum=`curl -s ${checksum_dl}/sha1sum.txt  |grep CentOS-7-x86_64-Minimal-${cd_minor}.iso|sed 's/\(.*\)[ ].*/\1/'`
+echo "${iso_checksum} ./CentOS-7-x86_64-Minimal-${cd_minor}.iso" |sha1sum -c -
 fi
+#echo "The ${iso_checksum_type} is ${iso_checksum}"
