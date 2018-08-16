@@ -54,10 +54,10 @@ fi
 
 checksum_dl=`echo ${iso_url}|sed 's/\(.*\)[/].*/\1/'`
 if [ "${iso_checksum_type}" = sha256 ] ; then
-iso_checksum=`curl -s ${checksum_dl}/sha256sum.txt |grep CentOS-7-x86_64-Minimal-${cd_minor}.iso|sed 's/\(.*\)[ ].*/\1/'`
+iso_checksum=`curl -s ${checksum_dl}/sha256sum.txt |grep CentOS-7-x86_64-Minimal-${cd_minor}.iso|awk '{print $1}'`
 echo "${iso_checksum} ./CentOS-7-x86_64-Minimal-${cd_minor}.iso" |sha256sum -c -
 else
-iso_checksum=`curl -s ${checksum_dl}/sha1sum.txt  |grep CentOS-7-x86_64-Minimal-${cd_minor}.iso|sed 's/\(.*\)[ ].*/\1/'`
+iso_checksum=`curl -s ${checksum_dl}/sha1sum.txt  |grep CentOS-7-x86_64-Minimal-${cd_minor}.iso|awk '{print $1}'`
 echo "${iso_checksum} ./CentOS-7-x86_64-Minimal-${cd_minor}.iso" |sha1sum -c -
 fi
 #echo "The ${iso_checksum_type} is ${iso_checksum}"
