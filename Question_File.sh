@@ -1,7 +1,7 @@
 #!/bin/sh
 clear
-cd_major="7.5"
-cd_minor="1804"
+cd_major="7.7"
+cd_minor="1908"
 read -e -p "Enter IP or Hostname of ESXi host:"  esxi_host
 read -e -p "Enter Datastore:"  esxi_datastore
 read -e -p "Enter ESXi Username:"  esxi_username
