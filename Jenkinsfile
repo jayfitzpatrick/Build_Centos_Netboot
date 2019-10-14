@@ -10,7 +10,7 @@ sh """
 cd /tmp
 sudo yum install mkisofs -y
 if [[ ! -e CentOS-7-x86_64-NetInstall-1804.iso ]]; then
-			wget http://ftp.heanet.ie/pub/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-1804.iso
+			wget http://ftp.heanet.ie/pub/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-1908.iso
 fi
 
 if [[ ! -e extracted ]]; then
@@ -21,7 +21,7 @@ fi
 if mount |grep extracted > /dev/null; then
 			sudo umount extracted
 fi
-sudo mount -o loop ./CentOS-7-x86_64-NetInstall-1804.iso ./extracted
+sudo mount -o loop ./CentOS-7-x86_64-NetInstall-1908.iso ./extracted
 if [[ ! -e bootcd ]]; then
     mkdir bootcd
 elif [[ ! -d bootcd ]]; then
