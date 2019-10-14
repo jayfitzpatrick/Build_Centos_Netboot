@@ -1,5 +1,4 @@
-// Powered by Infostretch
-#build update 0.1.0
+// Powered by Infostretch build update 0.1.0
 
 timestamps {
 
